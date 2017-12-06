@@ -2,61 +2,77 @@ import React, { Component } from 'react';
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
+// Material theme
+import { MuiThemeProvider, createMuiTheme, withTheme } from 'material-ui/styles';
+import blue from 'material-ui/colors/blue';
+import green from 'material-ui/colors/green';
+// import red from 'material-ui/colors/red';
 
+// Material components
 import AppBar from 'material-ui/AppBar';
-import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+
 
 import './App.css';
 
 const Home = () => (
   <div>
-    <h2>Home</h2>
+	<h2>URL Home</h2>
   </div>
 )
 
 const About = () => (
   <div>
-    <h2>About</h2>
+	<h2>YRL About</h2>
   </div>
 )
 
+const defaultTheme = createMuiTheme();
+
+debugger;
+
+const theme = createMuiTheme({
+	root: {
+		marginTop: defaultTheme.spacing.unit * 3,
+		width: '100%',
+	},
+  palette: {
+    primary: blue,
+    secondary: green,
+  },
+  status: {
+    danger: 'orange',
+  }
+});
+
 
 class App extends Component {
-
-    getChildContext() {
-                return { muiTheme: getMuiTheme(baseTheme) };
-            }
-
   render() {
-    return (
-      <Router>
-            <div className="App">
+	return (
+		<MuiThemeProvider theme={ theme }>
+			<Router>
+				<div className="App">
 
-              <header className="App-header">
-                <AppBar />
+					
+					<AppBar position="static" color='primary'>
+						<Toolbar>
+							<Typography type="title" color="inherit">
+								Progressive Web App
+							</Typography>
+						</Toolbar>
+					</AppBar>
+						
+					
 
+					<Route exact path="/" component={Home}/>
+					<Route exact path="/about" component={About}/>
 
-                <h1 className="App-title">Welcome to React</h1>
-
-                <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/about">About</Link></li>
-                </ul>
-
-              </header>
-
-            <Route exact path="/" component={Home}/>
-            <Route exact path="/about" component={About}/>
-              
-            </div>
-      </Router>
-    );
+				</div>
+			</Router>
+	  </MuiThemeProvider>
+	);
   }
 }
 
-// App.childContextTypes = {
-//     muiTheme: React.PropTypes.object.isRequired
-// };
-
-export default App;
+export default withTheme()(App);
