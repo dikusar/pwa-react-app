@@ -4,6 +4,7 @@ import Routes from './Routes';
 import { MuiThemeProvider, createMuiTheme, withTheme } from 'material-ui/styles';
 import blue from 'material-ui/colors/blue';
 import green from 'material-ui/colors/green';
+// import white from 'material-ui/colors/white';
 
 import './App.css';
 
@@ -17,10 +18,21 @@ const theme = createMuiTheme({
   palette: {
     primary: blue,
     secondary: green,
+    contrast: '#fff'
   },
   status: {
     danger: 'orange',
-  }
+  },
+  primaryText: {
+      background: defaultTheme.palette.background.default,
+      padding: `${defaultTheme.spacing.unit}px ${defaultTheme.spacing.unit * 2}px`,
+      color: defaultTheme.palette.text.primary,
+    },
+    primaryColor: {
+      background: defaultTheme.palette.primary[500],
+      padding: `${defaultTheme.spacing.unit}px ${defaultTheme.spacing.unit * 2}px`,
+      color: '#fff',
+    }
 });
 
 
