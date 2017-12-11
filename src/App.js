@@ -28,7 +28,7 @@ const theme = createMuiTheme({
       padding: `${defaultTheme.spacing.unit}px ${defaultTheme.spacing.unit * 2}px`,
       color: defaultTheme.palette.text.primary,
     },
-    primaryColor: {
+primaryColor: {
       background: defaultTheme.palette.primary[500],
       padding: `${defaultTheme.spacing.unit}px ${defaultTheme.spacing.unit * 2}px`,
       color: '#fff',
@@ -40,7 +40,7 @@ class App extends Component {
   render() {
 	return (
 		<MuiThemeProvider theme={ theme }>
-			<Routes />
+			{<Routes />}
 	  </MuiThemeProvider>
 	);
   }

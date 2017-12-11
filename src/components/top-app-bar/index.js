@@ -11,12 +11,9 @@ import Icon from 'material-ui/Icon';
 import Button from 'material-ui/Button';
 
 // Custom styles
-import componentStyles from './styles.css'
+import './styles.css'
 
 const styles = {
-	root: {
-	    width: '100%',
-  	},
 	flex: {
 		flex: 1,
 	},
@@ -27,32 +24,35 @@ const styles = {
 }
 
 function TopAppBar(props) {
-	const { classes }=props;
+	const { classes, handleMenuClick }=props;
 
 	return(
-		<div className={classes.root}>	
-			<AppBar position="static" color='primary'>
-				<Toolbar>
-					<IconButton className={classes.menuButton} color="contrast" aria-label="Menu">
-		            	<Icon color="white">menu</Icon>
-		          	</IconButton>
-					<Typography className={classes.flex} type="title" color="inherit">
-						Progressive Web App
-					</Typography>
-					<Button color="contrast">
-						<Link to={"/"}>
-						
-							Main
-						
-						</Link>
+		
+		<AppBar className={classes.appBar}>
+			<Toolbar>
+				<IconButton 
+					className={styles.menuButton}
+					color="contrast"
+					aria-label="open drawer"
+					onClick={handleMenuClick}
+				>
+	            	<Icon color="white">menu</Icon>
+	          	</IconButton>
+				<Typography className={styles.flex} type="title" color="inherit">
+					Progressive Web App
+				</Typography>
+				<Link to={"/"}>
+					<Button color="contrast">						
+						Main
 					</Button>
-					<Button color="contrast">
-						<Link to={"/about"}>About</Link>
-					</Button>
-				</Toolbar>
-			</AppBar>
-		</div>		
+				</Link>
+				<Link to={"/about"}>
+					<Button color="contrast">About</Button>
+				</Link>
+			</Toolbar>
+		</AppBar>
+	
 	)
 }
 
-export default withStyles(styles)(TopAppBar)
+export default withStyles()(TopAppBar)
