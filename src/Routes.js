@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 // App's components
 import InspectionList from './components/inspection-list'
-// import TopAppBar from './components/top-app-bar'
 import ResponsiveDrawer from './components/responsive-drawer'
 
 const About = () => (
@@ -32,11 +31,10 @@ export default ({childProps}) =>
 
 <Router>
 
-<div>
-	<ResponsiveDrawer />
-	{routes.map( (route, i) => (
-		<RouterFrame key={i} {...route}/>
-		))}
-
+	<div>
+		<ResponsiveDrawer />
+		{routes.map( (route, i) => (
+			<RouterFrame key={i} {...route}/>
+			))}
 	</div>
 </Router>;
