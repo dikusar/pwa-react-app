@@ -2,12 +2,17 @@ import { createMuiTheme } from 'material-ui/styles'
 import blue from 'material-ui/colors/blue'
 import green from 'material-ui/colors/green'
 
-const defaultTheme = createMuiTheme()
+const theme = createMuiTheme()
 
-const theme = createMuiTheme({
+const paddingTop = theme.spacing.unit * 10;
+
+const customTheme = createMuiTheme({
 	root: {
-		marginTop: defaultTheme.spacing.unit * 3,
+		paddingTop,
 		width: '100%',
+		minHeight: `calc(100vh - ${paddingTop}px)`,
+		zIndex: 1,
+    	overflow: 'hidden'
 	},
 	palette: {
 		primary: blue,
@@ -15,18 +20,18 @@ const theme = createMuiTheme({
 		contrast: '#fff'
 	},
 	status: {
-		danger: 'orange',
+		danger: 'orange'
 	},
 	primaryText: {
-		background: defaultTheme.palette.background.default,
-		padding: `${defaultTheme.spacing.unit}px ${defaultTheme.spacing.unit * 2}px`,
-		color: defaultTheme.palette.text.primary,
+		background: theme.palette.background.default,
+		padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
+		color: theme.palette.text.primary,
 	},
 	primaryColor: {
-		background: defaultTheme.palette.primary[500],
-		padding: `${defaultTheme.spacing.unit}px ${defaultTheme.spacing.unit * 2}px`,
-		color: '#fff',
+		background: theme.palette.primary[500],
+		padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
+		color: '#fff'
 	}
 })
 
-export default theme
+export default customTheme

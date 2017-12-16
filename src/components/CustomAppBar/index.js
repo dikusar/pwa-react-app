@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 // Material components
 import { withStyles } from 'material-ui/styles';
@@ -33,16 +33,22 @@ class CustomAppBar extends Component {
 		            	<Icon color="white">menu</Icon>
 		          	</IconButton>
 					<Typography className={classes.flex} type="title" color="inherit">
-						Progressive Web App
+						Inspections
 					</Typography>
-					<Link to={"/"}>
+					<NavLink
+						exact to={"/"}
+						activeClassName={classes.activeLink}
+					>
 						<Button color="contrast">						
 							Main
 						</Button>
-					</Link>
-					<Link to={"/about"}>
-						<Button color="contrast">About</Button>
-					</Link>
+					</NavLink>
+					<NavLink
+						exact to={"/Vehicle-search"}
+						activeClassName={classes.activeLink}
+					>
+						<Button color="contrast">Vehicle</Button>
+					</NavLink>
 				</Toolbar>
 			</AppBar>
 		
