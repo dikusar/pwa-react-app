@@ -8,11 +8,14 @@ const paddingTop = theme.spacing.unit * 10;
 
 const customTheme = createMuiTheme({
 	root: {
-		paddingTop,
+		// paddingTop,
 		width: '100%',
 		minHeight: `calc(100vh - ${paddingTop}px)`,
 		zIndex: 1,
-    	overflow: 'hidden'
+		overflow: 'hidden',
+		position: 'relative',
+		display: 'flex',
+		height: '100%'
 	},
 	palette: {
 		primary: blue,
@@ -31,7 +34,8 @@ const customTheme = createMuiTheme({
 		background: theme.palette.primary[500],
 		padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
 		color: '#fff'
-	}
+	},
+	drawerWidth: 240
 })
 
 export default customTheme

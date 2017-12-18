@@ -16,36 +16,36 @@ import styles from './stylesOption'
 
 
 class CustomAppBar extends Component {
-	
+
 	render() {
-		const { classes, handleMenuClick }=this.props;
+		const { classes, handleDrawerToggle }=this.props;
 
 		return(
 			
-			<AppBar className={classes.appBar}>
+			<AppBar className={ classes.appBar }>
 				<Toolbar>
 					<IconButton
-						className={classes.menuButton}
+						className={ classes.menuButton }
 						color="contrast"
 						aria-label="open drawer"
-						onClick={handleMenuClick}
+						onClick={ handleDrawerToggle }
 					>
 		            	<Icon color="white">menu</Icon>
 		          	</IconButton>
-					<Typography className={classes.flex} type="title" color="inherit">
+					<Typography className={ classes.flex } type="title" color="inherit">
 						Inspections
 					</Typography>
 					<NavLink
 						exact to={"/"}
-						activeClassName={classes.activeLink}
+						activeClassName={ classes.activeLink }
 					>
 						<Button color="contrast">						
 							Main
 						</Button>
 					</NavLink>
 					<NavLink
-						exact to={"/Vehicle-search"}
-						activeClassName={classes.activeLink}
+						exact to={"/vehicle-search"}
+						activeClassName={ classes.activeLink }
 					>
 						<Button color="contrast">Vehicle</Button>
 					</NavLink>

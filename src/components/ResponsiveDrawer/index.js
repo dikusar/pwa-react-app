@@ -7,31 +7,11 @@ import List from 'material-ui/List';
 import Hidden from 'material-ui/Hidden';
 import Divider from 'material-ui/Divider';
 
-import TopAppBar from '../top-app-bar'
+// import TopAppBar from '../top-app-bar'
 
-const drawerWidth = 240;
+// const drawerWidth = 240;
 
 const styles = theme => ({
-	root: {
-		width: '100%',
-		height: '100%',
-		marginTop: theme.spacing.unit * 3,
-		zIndex: 1,
-		overflow: 'hidden',
-	},
-	appFrame: {
-		position: 'relative',
-		display: 'flex',
-		width: '100%',
-		height: '100%',
-	},
-	appBar: {
-		position: 'absolute',
-		marginLeft: drawerWidth,
-		[theme.breakpoints.up('md')]: {
-			width: `calc(100% - ${drawerWidth}px)`,
-		},
-	},
 	navIconHide: {
 		[theme.breakpoints.up('md')]: {
 			display: 'none',
@@ -41,35 +21,27 @@ const styles = theme => ({
 	drawerPaper: {
 		width: 250,
 		[theme.breakpoints.up('md')]: {
-			width: drawerWidth,
+			width: theme.drawerWidth,
 			position: 'relative',
 			height: '100%',
 		},
 	},
-	content: {
-		backgroundColor: theme.palette.background.default,
-		width: '100%',
-		padding: theme.spacing.unit * 3,
-		height: 'calc(100% - 56px)',
-		marginTop: 56,
-		[theme.breakpoints.up('sm')]: {
-			height: 'calc(100% - 64px)',
-			marginTop: 64,
-		},
-	},
+	// content: {
+	// 	backgroundColor: theme.palette.background.default,
+	// 	width: '100%',
+	// 	padding: theme.spacing.unit * 3,
+	// 	height: 'calc(100% - 56px)',
+	// 	marginTop: 56,
+	// 	[theme.breakpoints.up('sm')]: {
+	// 		height: 'calc(100% - 64px)',
+	// 		marginTop: 64,
+	// 	},
+	// },
 });
 
 class ResponsiveDrawer extends React.Component {
-	state = {
-		mobileOpen: false,
-	};
-
-	handleDrawerToggle = () => {
-		this.setState({ mobileOpen: !this.state.mobileOpen });
-	};
-
 	render() {
-		const { classes, theme } = this.props;
+		const { classes, theme, mobileOpen, handleDrawerToggle } = this.props;
 
 		const drawer = (
 			<div>
@@ -84,16 +56,15 @@ class ResponsiveDrawer extends React.Component {
 		return (
 
 			<div>
-				<TopAppBar handleMenuClick={this.handleDrawerToggle} classes={theme.appBar} />
 				<Hidden mdUp>
 					<Drawer
 						type="temporary"
-						anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-						open={this.state.mobileOpen}
+						anchor={ theme.direction === 'rtl' ? 'right' : 'left' }
+						open={ mobileOpen }
 						classes={{
 							paper: classes.drawerPaper,
 						}}
-						onRequestClose={this.handleDrawerToggle}
+						onRequestClose={ handleDrawerToggle }
 						ModalProps={{
 								keepMounted: true, // Better open performance on mobile.
 					}}>
