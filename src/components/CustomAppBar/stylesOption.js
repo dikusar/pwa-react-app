@@ -15,9 +15,6 @@ const styles = theme => ({
 		[theme.breakpoints.up('md')]: {
 		  display: 'none',
 	  }
-	},
-	activeLink: {
-	   backgroundColor: theme.palette.primary[300]
 	}
 })
 

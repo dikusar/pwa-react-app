@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
 
 // Material components
 import { withStyles } from 'material-ui/styles';
@@ -8,7 +7,6 @@ import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import Icon from 'material-ui/Icon';
-import Button from 'material-ui/Button';
 
 // Custom styles
 import './styles.css'
@@ -21,7 +19,6 @@ class CustomAppBar extends Component {
 		const { classes, handleDrawerToggle }=this.props;
 
 		return(
-			
 			<AppBar className={ classes.appBar }>
 				<Toolbar>
 					<IconButton
@@ -34,21 +31,7 @@ class CustomAppBar extends Component {
 		          	</IconButton>
 					<Typography className={ classes.flex } type="title" color="inherit">
 						Inspections
-					</Typography>
-					<NavLink
-						exact to={"/"}
-						activeClassName={ classes.activeLink }
-					>
-						<Button color="contrast">						
-							Main
-						</Button>
-					</NavLink>
-					<NavLink
-						exact to={"/vehicle-search"}
-						activeClassName={ classes.activeLink }
-					>
-						<Button color="contrast">Vehicle</Button>
-					</NavLink>
+					</Typography>					
 				</Toolbar>
 			</AppBar>
 		

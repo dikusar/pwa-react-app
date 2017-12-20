@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom'
 
 import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
-import List from 'material-ui/List';
+import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import Icon from 'material-ui/Icon';
 import Hidden from 'material-ui/Hidden';
 import Divider from 'material-ui/Divider';
 
-// import TopAppBar from '../top-app-bar'
-
-// const drawerWidth = 240;
 
 const styles = theme => ({
 	navIconHide: {
@@ -22,40 +21,50 @@ const styles = theme => ({
 		width: 250,
 		[theme.breakpoints.up('md')]: {
 			width: theme.drawerWidth,
-			position: 'relative',
-			height: '100%',
+			position: 'relative'
+			// height: '100%',
 		},
 	},
-	// content: {
-	// 	backgroundColor: theme.palette.background.default,
-	// 	width: '100%',
-	// 	padding: theme.spacing.unit * 3,
-	// 	height: 'calc(100% - 56px)',
-	// 	marginTop: 56,
-	// 	[theme.breakpoints.up('sm')]: {
-	// 		height: 'calc(100% - 64px)',
-	// 		marginTop: 64,
-	// 	},
-	// },
+	link: {
+		flex: '1 1 auto' 
+	}
 });
 
 class ResponsiveDrawer extends React.Component {
 	render() {
 		const { classes, theme, mobileOpen, handleDrawerToggle } = this.props;
 
-		const drawer = (
-			<div>
+		const drawerTmpl = (
+			<div className="drawer__inner">
 				<div className={classes.drawerHeader} />
 				<Divider />
-				<List>Some list</List>
-				<Divider />
-				<List>Some list 2</List>
+				<List>
+					<ListItem button>
+						<ListItemIcon>
+							<Icon color="black">home</Icon>	
+						</ListItemIcon>
+						<NavLink exact to={"/"} className={ classes.link }>
+							<ListItemText primary="Main" />
+		          		</NavLink>
+			        </ListItem>
+
+
+					<ListItem button>
+						<ListItemIcon>
+							<Icon color="black">directions_car</Icon>	
+						</ListItemIcon>
+						<NavLink exact to={"/vehicle-search"} className={ classes.link }>
+							<ListItemText primary="Vehicle" />
+						</NavLink>
+					</ListItem>
+					
+				</List>
 			</div>
 		);
 
 		return (
 
-			<div>
+			<div className="drawer">
 				<Hidden mdUp>
 					<Drawer
 						type="temporary"
@@ -68,7 +77,7 @@ class ResponsiveDrawer extends React.Component {
 						ModalProps={{
 								keepMounted: true, // Better open performance on mobile.
 					}}>
-						{drawer}
+						{ drawerTmpl }
 					</Drawer>
 				</Hidden>
 				<Hidden mdDown implementation="css">
@@ -76,9 +85,8 @@ class ResponsiveDrawer extends React.Component {
 						type="permanent"
 						open
 						classes={{
-							paper: classes.drawerPaper
-					}}>
-						{drawer}
+							paper: classes.drawerPaper}}>
+						{ drawerTmpl }
 					</Drawer>
 				</Hidden>
 			</div>
