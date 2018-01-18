@@ -3,8 +3,8 @@ import { Switch, Route } from 'react-router-dom'
 
 import { withStyles } from 'material-ui/styles';
 
-import InpsectionList from '../InpsectionList'
-import VehicleSearch from '../VehicleSearch'
+import FuelingAssets from '../FuelingAssets'
+import newFueling from '../newFueling'
 
 import styles from './stylesOption'
 
@@ -16,8 +16,8 @@ class Main extends Component {
 		return(	
 			<main className={ classes.content }>
 				<Switch>
-					<Route exact path='/' component={ InpsectionList }/>
-	      			<Route exact path='/vehicle-search' component={ VehicleSearch }/>
+					<Route exact path='/' component={ FuelingAssets }/>
+	      			<Route exact path='/vehicle-search' component={ newFueling }/>
 				</Switch>
 			</main>
 		)

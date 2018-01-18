@@ -30,7 +30,7 @@ class CustomAppBar extends Component {
 		            	<Icon color="white">menu</Icon>
 		          	</IconButton>
 					<Typography className={ classes.flex } type="title" color="inherit">
-						Inspections
+						Fuel Management
 					</Typography>					
 				</Toolbar>
 			</AppBar>

@@ -26,7 +26,8 @@ const styles = theme => ({
 		},
 	},
 	link: {
-		flex: '1 1 auto' 
+		flex: '1 1 auto',
+		padding: '0 16px'
 	}
 });
 
@@ -39,22 +40,23 @@ class ResponsiveDrawer extends React.Component {
 				<div className={classes.drawerHeader} />
 				<Divider />
 				<List>
-					<ListItem button>
-						<ListItemIcon>
-							<Icon color="black">home</Icon>	
-						</ListItemIcon>
-						<NavLink exact to={"/"} className={ classes.link }>
-							<ListItemText primary="Main" />
-		          		</NavLink>
-			        </ListItem>
-
-
-					<ListItem button>
+					{/*  Fueling assets */}
+					<ListItem button onClick={ handleDrawerToggle }>
 						<ListItemIcon>
 							<Icon color="black">directions_car</Icon>	
 						</ListItemIcon>
+						<NavLink exact to={"/"} className={ classes.link }>
+							<ListItemText primary="Fueling Assets" />
+		          		</NavLink>
+			        </ListItem>
+
+		        	{/*  New fueling */}
+					<ListItem button onClick={ handleDrawerToggle }>
+						<ListItemIcon>
+							<Icon color="black">local_gas_station</Icon>	
+						</ListItemIcon>
 						<NavLink exact to={"/vehicle-search"} className={ classes.link }>
-							<ListItemText primary="Vehicle" />
+							<ListItemText primary="New Fueling" />
 						</NavLink>
 					</ListItem>
 					
