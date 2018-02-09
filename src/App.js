@@ -3,7 +3,7 @@ import { MuiThemeProvider, withStyles } from 'material-ui/styles'
 
 import ResponsiveDrawer from './components/ResponsiveDrawer'
 import CustomAppBar from './components/CustomAppBar'
-import Main from './components/Main'
+import MainLayout from './components/MainLayout'
 
 import './App.css';
 import theme from './App.theme'
@@ -28,7 +28,7 @@ class App extends Component {
 				<div className={ classes.root }>
 					<ResponsiveDrawer handleDrawerToggle={ handleDrawerToggle } mobileOpen={ mobileOpen } />
 					<CustomAppBar handleDrawerToggle={ handleDrawerToggle }/>
-					<Main />
+					<MainLayout theme={ theme } />
 				</div>
 			</MuiThemeProvider>
 		);

@@ -35,7 +35,10 @@ const customTheme = createMuiTheme({
 		padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
 		color: '#fff'
 	},
-	drawerWidth: 240
+	drawerWidth: 240,
+	card: {
+		maxWidth: 345,
+	}
 })
 
 export default customTheme

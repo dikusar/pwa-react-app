@@ -1,40 +1,35 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
-import Button from 'material-ui/Button';
+import Card, { CardContent, CardHeader } from 'material-ui/Card';
+// import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 
-const styles = theme => ({
+const styles = {
 	card: {
 		maxWidth: 345,
-	},
-	media: {
-		height: 200,
 	},
 	cardParagraph: {
 		display: 'flex',
 		justifyContent: 'space-between',
+		marginBottom: 5,
 		'&:last-of-type': {
 			marginBottom: 0
 		}
 	}
-});
+};
 
 
 function FuelingAssets(props) {
 	const { classes }=props;
 	return(
-		<div>
+		<div className="assets">
 			<Card className={classes.card}>
-			<CardHeader title="Assets" />
 				<CardContent>
-					
-						
-					
-
-					
-					<Typography paragraph className={ classes.cardParagraph } component="p">
+					<Typography gutterBottom="true" type="headline">
+						Assests
+					</Typography>
+					<Typography className={ classes.cardParagraph } component="p">
 						<Typography component="span">
 							<Typography type="caption" component="label">
 								 Last Fuel Date
@@ -53,7 +48,7 @@ function FuelingAssets(props) {
 						</Typography>
 					</Typography>
 					<Typography className={ classes.cardParagraph } component="p">
-					<Typography component="span">
+						<Typography component="span">
 							<Typography type="caption" component="label">
 								 Consumption deviate
 							</Typography>
