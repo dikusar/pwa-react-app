@@ -28,7 +28,7 @@ class App extends Component {
 				<div className={ classes.root }>
 					<ResponsiveDrawer handleDrawerToggle={ handleDrawerToggle } mobileOpen={ mobileOpen } />
 					<CustomAppBar handleDrawerToggle={ handleDrawerToggle }/>
-					<MainLayout theme={ theme } />
+					<MainLayout />
 				</div>
 			</MuiThemeProvider>
 		);

@@ -11,15 +11,12 @@ import styles from './stylesOption'
 class Main extends Component {
 	
 	render(){
-		// debugger;
-		const { classes, theme }=this.props;
+		const { classes }=this.props;
 
 		return(	
 			<main className={ classes.content }>
 				<Switch>
-					<Route exact path='/assets' render={ () => (
-						<AssetsLayout {...this.props } />
-					)} />
+					<Route exact path='/assets' component={ AssetsLayout }/>
 	      			<Route exact path='/vehicle-search' component={ newFueling }/>
 				</Switch>
 			</main>

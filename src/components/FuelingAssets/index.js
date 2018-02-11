@@ -1,70 +1,52 @@
-import React from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Card, { CardContent, CardHeader } from 'material-ui/Card';
 // import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 
-const styles = {
-	card: {
-		maxWidth: 345,
-	},
-	cardParagraph: {
-		display: 'flex',
-		justifyContent: 'space-between',
-		marginBottom: 5,
-		'&:last-of-type': {
-			marginBottom: 0
-		}
+import cardStyles from '../../styles/cardStyles'
+import paragraphStyles from '../../styles/paragraphStyles'
+
+const paragraphs = [
+	{caption: 'Last Fuel Date', text: 'Empty'},
+	{caption: 'Quantity', text: 'Empty'},
+	{caption: 'Consumption deviate', text: 'Empty'}
+]
+
+
+class FuelingAssets extends Component {
+
+	render(){
+			const { classes }=this.props;
+			return(	
+				<Card className={ classes.card }>
+					<CardContent>
+						<Typography gutterBottom="true" type="headline">
+							Assests
+						</Typography>
+						<Typography className={ classes.paragrapth } component="p">
+						{paragraphs.map(
+							(p, i) => (
+								<Typography key={ `par-${i}` } className={ classes.paragrapthItem } component="span">
+									<Typography type="caption" component="label">
+										 { p.caption }
+									</Typography>
+									<Typography type="body2" component="span">
+										 { p.text }
+									</Typography>
+								</Typography>
+							)
+						)}
+						</Typography>		
+					</CardContent>
+				</Card>
+			)
 	}
-};
-
-
-function FuelingAssets(props) {
-	const { classes }=props;
-	return(
-		<div className="assets">
-			<Card className={classes.card}>
-				<CardContent>
-					<Typography gutterBottom="true" type="headline">
-						Assests
-					</Typography>
-					<Typography className={ classes.cardParagraph } component="p">
-						<Typography component="span">
-							<Typography type="caption" component="label">
-								 Last Fuel Date
-							</Typography>
-							<Typography type="body2" component="span">
-								 Date from server
-							</Typography>
-						</Typography>
-						<Typography component="span">
-							<Typography type="caption" component="label">
-								 Quantity
-							</Typography>
-							<Typography type="body2" component="span">
-								 Quantity from server
-							</Typography>
-						</Typography>
-					</Typography>
-					<Typography className={ classes.cardParagraph } component="p">
-						<Typography component="span">
-							<Typography type="caption" component="label">
-								 Consumption deviate
-							</Typography>
-							<Typography type="body2" component="span">
-								 Data from server
-							</Typography>
-						</Typography>
-					</Typography>
-				</CardContent>
-			</Card>
-		</div>
-	)
 }
 
 FuelingAssets.propTypes = {
 	classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(FuelingAssets)
+export default withStyles( Object.assign({}, cardStyles, paragraphStyles ))(FuelingAssets)
