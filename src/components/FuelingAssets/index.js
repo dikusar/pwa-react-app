@@ -9,9 +9,12 @@ import cardStyles from '../../styles/cardStyles'
 import paragraphStyles from '../../styles/paragraphStyles'
 
 const paragraphs = [
-	{caption: 'Last Fuel Date', text: 'Empty'},
-	{caption: 'Quantity', text: 'Empty'},
-	{caption: 'Consumption deviate', text: 'Empty'}
+	{par: [
+		{caption: 'Last Fuel Date', text: 'Empty'},
+		{caption: 'Quantity', text: 'Empty'},
+		{caption: 'Order Reference', text: 'Empty'},
+		{caption: 'Consumption deviate', text: 'Empty'}
+	]}
 ]
 
 
@@ -23,22 +26,27 @@ class FuelingAssets extends Component {
 				<Card className={ classes.card }>
 					<CardContent>
 						<Typography gutterBottom="true" type="headline">
-							Assests
+							Fueling Assests
 						</Typography>
-						<Typography className={ classes.paragrapth } component="p">
-						{paragraphs.map(
-							(p, i) => (
-								<Typography key={ `par-${i}` } className={ classes.paragrapthItem } component="span">
-									<Typography type="caption" component="label">
-										 { p.caption }
-									</Typography>
-									<Typography type="body2" component="span">
-										 { p.text }
-									</Typography>
-								</Typography>
-							)
+						
+						{ paragraphs.map( (par, i) => {
+							return (	
+								<Typography key={ `par-${i}` } className={ classes.paragrapth } component="p">
+									{par.par.map( (parItem, k) => (
+											<Typography  key={ `par-item-${k}` } className={ classes.paragrapthItem } component="span">
+												<Typography type="caption" component="label">
+													 { parItem.caption }
+												</Typography>
+												<Typography type="body2" component="span">
+													 { parItem.text }
+												</Typography>
+											</Typography>
+										)
+									)}
+								</Typography>		
+							)}
 						)}
-						</Typography>		
+						
 					</CardContent>
 				</Card>
 			)
