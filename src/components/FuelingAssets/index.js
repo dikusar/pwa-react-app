@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Card, { CardContent, CardHeader } from 'material-ui/Card';
-// import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 
 import cardStyles from '../../styles/cardStyles'
@@ -25,10 +24,11 @@ class FuelingAssets extends Component {
 			return(	
 				<Card className={ classes.card }>
 					<CardContent>
-						<Typography gutterBottom="true" type="headline">
+						<Typography gutterBottom="true" type="title">
 							Fueling Assests
 						</Typography>
-						
+					</CardContent>
+					<CardContent>
 						{ paragraphs.map( (par, i) => {
 							return (	
 								<Typography key={ `par-${i}` } className={ classes.paragrapth } component="p">
