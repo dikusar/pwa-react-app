@@ -17,48 +17,59 @@ const data = [
   createData('Three months', 237, 9.0, 37)
 ];
 
+const styles = theme => ({
+	
+	paddingDefault: {
+		padding: '4px 2rem 4px 1rem'
+	}
+	
+});
+
 function VehicleMetrics(props) {
 	const { classes }=props;
 	return(
+		<Paper>
+			<Toolbar>
+				<Typography type="title">Vehicle</Typography>
+			</Toolbar>
 		
-			
-	<Paper>
-		<Toolbar>
-			<Typography type="title">Vehicle</Typography>
-		</Toolbar>
-	
-	<Table>
-		<TableHead>
-			<TableRow>
-			<TableCell numeric>Metrics</TableCell>
-				<TableCell numeric>Refuel Interval</TableCell>
-				<TableCell numeric>Fuel Transaction Count</TableCell>
-				<TableCell numeric>Daily Usage</TableCell>
-			</TableRow>
-		</TableHead>
-		<TableBody>
-			{data.map(n => {
-				return (
-					<TableRow key={n.id}>
-						<TableCell>{n.name}</TableCell>
-						<TableCell numeric>{n.refuelInterval}</TableCell>
-						<TableCell numeric>{n.transactionCount}</TableCell>
-						<TableCell numeric>{n.dailyUsage}</TableCell>
+			<Table>
+				<TableHead>
+					<TableRow>
+						<TableCell className={ classes.paddingDefault } numeric>Metrics</TableCell>
+						<TableCell className={ classes.paddingDefault } numeric>Refuel Interval</TableCell>
+						<TableCell className={ classes.paddingDefault } numeric>Fuel Transaction Count</TableCell>
+						<TableCell className={ classes.paddingDefault } numeric>Daily Usage</TableCell>
 					</TableRow>
-					);
-			})}
-		</TableBody>
-	</Table>
-	</Paper>
-			
-		
+				</TableHead>
+				<TableBody>
+					{data.map(n => {
+						return (
+							<TableRow key={n.id}>
+								<TableCell className={ classes.paddingDefault }>
+									{n.name}
+								</TableCell>
+								<TableCell className={ classes.paddingDefault } numeric>
+									{n.refuelInterval}
+								</TableCell>
+								<TableCell className={ classes.paddingDefault } numeric>
+									{n.transactionCount}
+								</TableCell>
+								<TableCell className={ classes.paddingDefault } numeric>
+									{n.dailyUsage}
+								</TableCell>
+							</TableRow>
+							);
+					})}
+				</TableBody>
+			</Table>
+		</Paper>
 	)
 
 }
 
-// VehicleMetrics.propTypes = {
-// 	classes: PropTypes.object.isRequired
-// };
+VehicleMetrics.propTypes = {
+	classes: PropTypes.object.isRequired
+};
 
-// export default withStyles(cardStyles)(VehicleMetrics)
-export default VehicleMetrics
+export default withStyles(styles)(VehicleMetrics)

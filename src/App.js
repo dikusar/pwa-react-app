@@ -35,4 +35,4 @@ class App extends Component {
 	}
 }
 
-export default withStyles(theme, {withTheme:true})(App);
+export default withStyles(theme)(App);

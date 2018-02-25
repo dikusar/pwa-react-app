@@ -1,6 +1,6 @@
 import { createMuiTheme } from 'material-ui/styles'
 import blue from 'material-ui/colors/blue'
-import green from 'material-ui/colors/green'
+import pink from 'material-ui/colors/pink'
 import red from 'material-ui/colors/red'
 
 const theme = createMuiTheme()
@@ -20,7 +20,7 @@ const customTheme = createMuiTheme({
 	},
 	palette: {
 		primary: blue,
-		secondary: blue,
+		secondary: pink,
 		error: red,
 	},
 	status: {

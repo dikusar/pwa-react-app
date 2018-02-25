@@ -1,11 +1,14 @@
 import React, {Component} from 'react'
-import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Card, { CardContent, CardHeader } from 'material-ui/Card';
-import Typography from 'material-ui/Typography';
+import PropTypes from 'prop-types'
+import { withStyles, createMuiTheme } from 'material-ui/styles'
+import Card, { CardContent } from 'material-ui/Card'
+import Typography from 'material-ui/Typography'
 
 import cardStyles from '../../styles/cardStyles'
 import paragraphStyles from '../../styles/paragraphStyles'
+
+const theme = createMuiTheme();
+const mixStyles = ()=> (Object.assign(cardStyles(theme), paragraphStyles))
 
 const paragraphs = [
 	{par: [
@@ -20,6 +23,8 @@ const paragraphs = [
 class FuelingAssets extends Component {
 
 	render(){
+		// this.props.classes = [cardStyles, paragraphStyles];
+
 			const { classes }=this.props;
 			return(	
 				<Card className={ classes.card }>
@@ -57,4 +62,5 @@ FuelingAssets.propTypes = {
 	classes: PropTypes.object.isRequired
 };
 
-export default withStyles( Object.assign({}, cardStyles, paragraphStyles ))(FuelingAssets)
+export default withStyles( mixStyles )(FuelingAssets)
+
