@@ -55,7 +55,7 @@ class ResponsiveDrawer extends React.Component {
 						<ListItemIcon>
 							<Icon color="black">local_gas_station</Icon>	
 						</ListItemIcon>
-						<NavLink exact to={"/vehicle-search"} className={ classes.link }>
+						<NavLink exact to={"/new-fueling"} className={ classes.link }>
 							<ListItemText primary="New Fueling" />
 						</NavLink>
 					</ListItem>

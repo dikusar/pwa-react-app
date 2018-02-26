@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 import { withStyles } from 'material-ui/styles'
 
 import AssetsLayout from '../AssetsLayout'
-import newFueling from '../newFueling'
+import NewFueling from '../NewFueling'
 
 import styles from './stylesOption'
 
@@ -17,7 +17,7 @@ class Main extends Component {
 			<main className={ classes.content }>
 				<Switch>
 					<Route exact path='/assets' component={ AssetsLayout }/>
-	      			<Route exact path='/vehicle-search' component={ newFueling }/>
+	      			<Route exact path='/new-fueling' component={ NewFueling }/>
 				</Switch>
 			</main>
 		)
