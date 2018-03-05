@@ -10,7 +10,7 @@ import Icon from 'material-ui/Icon';
 
 // Custom styles
 import './styles.css'
-import styles from './stylesOption'
+import styles from './stylesOptions'
 
 
 class CustomAppBar extends Component {

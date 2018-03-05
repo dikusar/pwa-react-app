@@ -6,7 +6,7 @@ import { withStyles } from 'material-ui/styles'
 import AssetsLayout from '../AssetsLayout'
 import NewFueling from '../NewFueling'
 
-import styles from './stylesOption'
+import styles from './stylesOptions'
 
 class Main extends Component {
 	
