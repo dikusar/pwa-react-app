@@ -3,8 +3,8 @@ import { Switch, Route } from 'react-router-dom'
 
 import { withStyles } from 'material-ui/styles'
 
-import AssetsLayout from '../AssetsLayout'
-import NewFueling from '../NewFueling'
+import AssetsContainer from '../AssetsContainer'
+import NewFueling from '../../components/NewFueling'
 
 import styles from './stylesOptions'
 
@@ -16,7 +16,7 @@ class Main extends Component {
 		return(	
 			<main className={ classes.content }>
 				<Switch>
-					<Route exact path='/assets' component={ AssetsLayout }/>
+					<Route exact path='/assets' component={ AssetsContainer }/>
 	      			<Route exact path='/new-fueling' component={ NewFueling }/>
 				</Switch>
 			</main>

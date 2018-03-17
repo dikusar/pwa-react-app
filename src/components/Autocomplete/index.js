@@ -20,9 +20,6 @@ function renderInput(inputProps) {
       fullWidth
       inputRef={ref}
       InputProps={{
-        classes: {
-          input: classes.input,
-        },
         ...other,
       }}
     />
@@ -119,6 +116,7 @@ class IntegrationAutosuggest extends React.Component {
           suggestionsContainerOpen: classes.suggestionsContainerOpen,
           suggestionsList: classes.suggestionsList,
           suggestion: classes.suggestion,
+          input: classes.input
         }}
         renderInputComponent={renderInput}
         suggestions={this.state.suggestions}

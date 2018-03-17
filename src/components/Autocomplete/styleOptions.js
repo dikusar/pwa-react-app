@@ -20,6 +20,11 @@ const styles = theme => ({
     padding: 0,
     listStyleType: 'none',
   },
+  input: {
+    '&:after': {
+      backgroundColor: theme.palette.primary[500]
+    }
+  }
 });
 
 export default styles
