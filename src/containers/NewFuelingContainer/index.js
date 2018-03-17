@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 
-import Autocomplete from '../Autocomplete'
-
-class NewFueling extends Component {
+class NewFuelingContainer extends Component {
 	render() {
 		return (
 			<div>
-				{/*Vehicle autocomplete*/}
-				<Autocomplete />
 				{/*Driver autocomplete*/}
 				{/*Tank select-box*/}
 				{/*Pump select-box*/}
@@ -18,4 +14,4 @@ class NewFueling extends Component {
 	}
 }
 
-export default NewFueling
+export default NewFuelingContainer

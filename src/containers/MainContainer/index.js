@@ -4,7 +4,8 @@ import { Switch, Route } from 'react-router-dom'
 import { withStyles } from 'material-ui/styles'
 
 import AssetsContainer from '../AssetsContainer'
-import NewFueling from '../../components/NewFueling'
+import NewFuelingContainer from '../NewFuelingContainer'
+import Autocomplete from '../../components/Autocomplete'
 
 import styles from './stylesOptions'
 
@@ -15,9 +16,11 @@ class Main extends Component {
 
 		return(	
 			<main className={ classes.content }>
+				{/*Vehicle autocomplete*/}
+				<Autocomplete />
 				<Switch>
 					<Route exact path='/assets' component={ AssetsContainer }/>
-	      			<Route exact path='/new-fueling' component={ NewFueling }/>
+	      			<Route exact path='/new-fueling' component={ NewFuelingContainer }/>
 				</Switch>
 			</main>
 		)

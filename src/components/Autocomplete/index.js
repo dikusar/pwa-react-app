@@ -3,26 +3,31 @@ import PropTypes from 'prop-types';
 import Autosuggest from 'react-autosuggest';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
-import TextField from 'material-ui/TextField';
+// import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
-import { MenuItem } from 'material-ui/Menu';
-import { withStyles } from 'material-ui/styles';
+import { MenuItem, withStyles, Icon, TextField, createMuiTheme } from 'material-ui';
+// import { withStyles } from 'material-ui/styles';
+// import Icon from 'material-ui/Icon';
 
 import styles from './styleOptions'
+import flexStyles from '../../styles/flexStyles'
 import suggestions from './suggestions'
+import theme from '../../App.theme'
 
+const mixStyles = ()=> (Object.assign(styles(theme), flexStyles(theme)))
 
 function renderInput(inputProps) {
   const { classes, ref, ...other } = inputProps;
 
   return (
-    <TextField
-      fullWidth
-      inputRef={ref}
-      InputProps={{
-        ...other,
-      }}
-    />
+          <TextField
+        fullWidth
+        inputRef={ref}
+        InputProps={{
+          ...other,
+        }}
+
+      />
   );
 }
 
@@ -110,28 +115,31 @@ class IntegrationAutosuggest extends React.Component {
     const { classes } = this.props;
 
     return (
-      <Autosuggest
-        theme={{
-          container: classes.container,
-          suggestionsContainerOpen: classes.suggestionsContainerOpen,
-          suggestionsList: classes.suggestionsList,
-          suggestion: classes.suggestion,
-          input: classes.input
-        }}
-        renderInputComponent={renderInput}
-        suggestions={this.state.suggestions}
-        onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
-        renderSuggestionsContainer={renderSuggestionsContainer}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-        inputProps={{
-          classes,
-          placeholder: 'Search a vehicle',
-          value: this.state.value,
-          onChange: this.handleChange,
-        }}
-      />
+      <div className={ classes.flex }> 
+        <Icon className={ classes.prefixIcon } color="black">directions_car</Icon>
+        <Autosuggest
+          theme={{
+            container: classes.container,
+            suggestionsContainerOpen: classes.suggestionsContainerOpen,
+            suggestionsList: classes.suggestionsList,
+            suggestion: classes.suggestion,
+            input: classes.input
+          }}
+          renderInputComponent={renderInput}
+          suggestions={this.state.suggestions}
+          onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
+          renderSuggestionsContainer={renderSuggestionsContainer}
+          getSuggestionValue={getSuggestionValue}
+          renderSuggestion={renderSuggestion}
+          inputProps={{
+            classes,
+            placeholder: 'Search a vehicle',
+            value: this.state.value,
+            onChange: this.handleChange,
+          }}
+        />
+      </div>
     );
   }
 }
@@ -140,4 +148,4 @@ IntegrationAutosuggest.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(IntegrationAutosuggest);
+export default withStyles(mixStyles)(IntegrationAutosuggest);

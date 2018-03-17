@@ -8,18 +8,20 @@ import VehicleMetrics from '../../components/VehicleMetrics'
 import flexStyles from '../../styles/flexStyles'
 
 
-class AssetsLayout extends Component {
+class AssetsContainer extends Component {
 
 	render() {
 		const { classes }=this.props;
 		return (
-			<div className={ classes.flex }>
-				<FuelingAssets />
-				<VehicleMetrics />
+			<div>
+				<div className={ classes.flex }>
+					<FuelingAssets />
+					<VehicleMetrics />
+				</div>
 			</div>
 		);
 	}
 }
 
-export default withStyles(flexStyles)(AssetsLayout)
+export default withStyles(flexStyles)(AssetsContainer)
 
