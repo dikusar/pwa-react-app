@@ -22,6 +22,8 @@ class App extends Component {
 		const { handleDrawerToggle }=this;
 		const { classes }=this.props;
 		const  { mobileOpen }=this.state;
+
+		console.log(theme);
 		
 		return (
 

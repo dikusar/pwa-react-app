@@ -1,9 +1,11 @@
 const styles = theme => ({
   container: {
-    flexGrow: 1,
     position: 'relative',
     height: '3rem',
     width: 200,
+    [theme.breakpoints.down('sm')]: {
+      flexGrow: 1,
+    },
   },
   suggestionsContainerOpen: {
     position: 'absolute',

@@ -6,6 +6,7 @@ import { withStyles } from 'material-ui/styles'
 import AssetsContainer from '../AssetsContainer'
 import NewFuelingContainer from '../NewFuelingContainer'
 import Autocomplete from '../../components/Autocomplete'
+import EmptyState from '../../components/EmptyState'
 
 import styles from './stylesOptions'
 
@@ -18,6 +19,7 @@ class Main extends Component {
 			<main className={ classes.content }>
 				{/*Vehicle autocomplete*/}
 				<Autocomplete />
+				<EmptyState infoMess='Please, seach vehicle' />
 				<Switch>
 					<Route exact path='/assets' component={ AssetsContainer }/>
 	      			<Route exact path='/new-fueling' component={ NewFuelingContainer }/>
