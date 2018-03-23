@@ -17,14 +17,14 @@ import theme from '../../App.theme'
 const mixStyles = ()=> (Object.assign(styles(theme), flexStyles(theme)))
 
 function renderInput(inputProps) {
-  const { classes, ref, ...other } = inputProps;
-
+  const { label, classes, ref, ...other } = inputProps;
   return (
-          <TextField
-        fullWidth
-        inputRef={ref}
-        InputProps={{
-          ...other,
+        <TextField
+            label={label}
+            fullWidth
+            inputRef={ref}
+            InputProps={{
+              ...other,
         }}
 
       />
@@ -65,7 +65,7 @@ function renderSuggestionsContainer(options) {
 }
 
 function getSuggestionValue(suggestion) {
-  return suggestion.label;
+  return suggestion;
 }
 
 function getSuggestions(value) {
@@ -89,11 +89,13 @@ function getSuggestions(value) {
 
 class IntegrationAutosuggest extends React.Component {
   state = {
+    id: null,
     value: '',
     suggestions: [],
   };
 
   handleSuggestionsFetchRequested = ({ value }) => {
+    
     this.setState({
       suggestions: getSuggestions(value),
     });
@@ -107,12 +109,13 @@ class IntegrationAutosuggest extends React.Component {
 
   handleChange = (event, { newValue }) => {
     this.setState({
-      value: newValue,
+      value: typeof newValue === 'string' ? newValue : newValue.label,
+      id: typeof newValue === 'string' ? null : newValue.id
     });
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, inputLabel  } = this.props;
 
     return (
       <div className={ classes.flex }> 
@@ -133,6 +136,7 @@ class IntegrationAutosuggest extends React.Component {
           getSuggestionValue={getSuggestionValue}
           renderSuggestion={renderSuggestion}
           inputProps={{
+            label: inputLabel,
             classes,
             placeholder: 'Search a vehicle',
             value: this.state.value,

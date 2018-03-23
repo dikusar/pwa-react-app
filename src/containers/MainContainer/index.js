@@ -13,16 +13,23 @@ import styles from './stylesOptions'
 class Main extends Component {
 	
 	render(){
-		const { classes }=this.props;
+		const { classes, vehicleId }=this.props;
 
 		return(	
 			<main className={ classes.content }>
 				{/*Vehicle autocomplete*/}
-				<Autocomplete />
-				<EmptyState infoMess='Please, seach vehicle' />
+				<Autocomplete inputLabel="Vehicle"/>
+
 				<Switch>
-					<Route exact path='/assets' component={ AssetsContainer }/>
-	      			<Route exact path='/new-fueling' component={ NewFuelingContainer }/>
+					{/*Vehicle Assets info*/}
+					<Route 
+						exact path='/assets/vehicle/:vehicleId'
+						render={ () => vehicleId ? <AssetsContainer /> : <EmptyState infoMess='Please, seach vehicle' /> }/>
+
+					{/*Form for new fueling registration*/}
+	      			<Route
+	      				exact path='/new-fueling' 
+	      				component={ NewFuelingContainer }/>
 				</Switch>
 			</main>
 		)

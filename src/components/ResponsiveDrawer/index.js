@@ -33,7 +33,7 @@ const styles = theme => ({
 
 class ResponsiveDrawer extends React.Component {
 	render() {
-		const { classes, theme, mobileOpen, handleDrawerToggle } = this.props;
+		const { classes, theme, mobileOpen, handleDrawerToggle, vehicleId } = this.props;
 
 		const drawerTmpl = (
 			<div className="drawer__inner">
@@ -45,7 +45,7 @@ class ResponsiveDrawer extends React.Component {
 						<ListItemIcon>
 							<Icon color="black">directions_car</Icon>	
 						</ListItemIcon>
-						<NavLink exact to={"/assets"} className={ classes.link }>
+						<NavLink exact to={`/assets/vehicle/${vehicleId}`} className={ classes.link }>
 							<ListItemText primary="Fueling Assets" />
 		          		</NavLink>
 			        </ListItem>
