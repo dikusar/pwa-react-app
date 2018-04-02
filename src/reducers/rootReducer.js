@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 
-import vehicle from './vehicle'
+import autocomplete from './autocomplete'
 
 
 export default combineReducers({
-	vehicle
+	autocomplete
 })

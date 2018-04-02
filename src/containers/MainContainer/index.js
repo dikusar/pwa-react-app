@@ -24,7 +24,7 @@ class Main extends Component {
 					{/*Vehicle Assets info*/}
 					<Route 
 						exact path='/assets/vehicle/:vehicleId'
-						render={ () => vehicleId ? <AssetsContainer /> : <EmptyState infoMess='Please, seach vehicle' /> }/>
+						render={ () => vehicleId ? <AssetsContainer /> : <EmptyState infoMess='Please, search vehicle' /> }/>
 
 					{/*Form for new fueling registration*/}
 	      			<Route

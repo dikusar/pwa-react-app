@@ -1,4 +1,10 @@
-export default (vehicleId=null, action={}) => {
+const defaultState = {
+	id: null,
+    value: '',
+    suggestions: [],
+};
+
+export default (state=defaultState, action={}) => {
     // const { type, payload } = action
 
     // switch (type) {
@@ -6,5 +12,5 @@ export default (vehicleId=null, action={}) => {
     // }
 
     // return counterState
-    return vehicleId;
+    return defaultState;
 }

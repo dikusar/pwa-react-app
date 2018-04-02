@@ -91,7 +91,7 @@ class IntegrationAutosuggest extends React.Component {
   state = {
     id: null,
     value: '',
-    suggestions: [],
+    suggestions: []
   };
 
   handleSuggestionsFetchRequested = ({ value }) => {
