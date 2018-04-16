@@ -13,6 +13,7 @@ import styles from './styleOptions'
 import flexStyles from '../../styles/flexStyles'
 import suggestions from './suggestions'
 import theme from '../../App.theme'
+import selectValue from '../../ActionCreators/autocomplete'
 
 const mixStyles = ()=> (Object.assign(styles(theme), flexStyles(theme)))
 
