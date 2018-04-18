@@ -4,7 +4,7 @@ const defaultState = {
     suggestions: [],
 };
 
-export default (state=defaultState, action={}) => {
+export default (autocomplete=defaultState, action={}) => {
     // const { type, payload } = action
 
     // switch (type) {
@@ -12,5 +12,5 @@ export default (state=defaultState, action={}) => {
     // }
 
     // return counterState
-    return defaultState;
+    return autocomplete;
 }

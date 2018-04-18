@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Autosuggest from 'react-autosuggest';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
+import compose from 'recompose/compose';
+
 // import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import { MenuItem, withStyles, Icon, TextField, createMuiTheme } from 'material-ui';
@@ -13,7 +16,7 @@ import styles from './styleOptions'
 import flexStyles from '../../styles/flexStyles'
 import suggestions from './suggestions'
 import theme from '../../App.theme'
-import selectValue from '../../ActionCreators/autocomplete'
+import { selectValue } from '../../ActionCreators/autocomplete'
 
 const mixStyles = ()=> (Object.assign(styles(theme), flexStyles(theme)))
 
@@ -90,22 +93,22 @@ function getSuggestions(value) {
 
 class IntegrationAutosuggest extends React.Component {
   state = {
-    id: null,
-    value: '',
+    // id: null,
+    // value: '',
     suggestions: []
   };
 
   handleSuggestionsFetchRequested = ({ value }) => {
     
-    this.setState({
-      suggestions: getSuggestions(value),
-    });
+    // this.setState({
+    //   suggestions: getSuggestions(value),
+    // });
   };
 
   handleSuggestionsClearRequested = () => {
-    this.setState({
-      suggestions: [],
-    });
+    // this.setState({
+    //   suggestions: [],
+    // });
   };
 
   handleChange = (event, { newValue }) => {
@@ -116,7 +119,7 @@ class IntegrationAutosuggest extends React.Component {
   };
 
   render() {
-    const { classes, inputLabel  } = this.props;
+    const { classes, inputLabel, autocomplete  } = this.props;
 
     return (
       <div className={ classes.flex }> 
@@ -129,18 +132,18 @@ class IntegrationAutosuggest extends React.Component {
             suggestion: classes.suggestion,
             input: classes.input
           }}
-          renderInputComponent={renderInput}
-          suggestions={this.state.suggestions}
-          onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
-          onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
-          renderSuggestionsContainer={renderSuggestionsContainer}
-          getSuggestionValue={getSuggestionValue}
-          renderSuggestion={renderSuggestion}
+          renderInputComponent={ renderInput }
+          suggestions={ this.state.suggestions }
+          onSuggestionsFetchRequested={ this.handleSuggestionsFetchRequested }
+          onSuggestionsClearRequested={ this.handleSuggestionsClearRequested }
+          renderSuggestionsContainer={ renderSuggestionsContainer }
+          getSuggestionValue={ getSuggestionValue }
+          renderSuggestion={ renderSuggestion }
           inputProps={{
             label: inputLabel,
             classes,
-            placeholder: 'Search a vehicle',
-            value: this.state.value,
+            placeholder: `Search a ${inputLabel.toLowerCase()}`,
+            value: autocomplete.value,
             onChange: this.handleChange,
           }}
         />
@@ -153,4 +156,12 @@ IntegrationAutosuggest.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(mixStyles)(IntegrationAutosuggest);
+export default compose(
+  withStyles(mixStyles, { name: 'autocomplete' }),
+  connect((state, props) => {
+    return {
+        autocomplete: state.autocomplete
+      }
+    }, 
+    { selectValue })
+)(IntegrationAutosuggest);
