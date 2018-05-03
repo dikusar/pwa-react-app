@@ -16,7 +16,7 @@ import styles from './styleOptions'
 import flexStyles from '../../styles/flexStyles'
 import suggestions from './suggestions'
 import theme from '../../App.theme'
-import { selectValue } from '../../ActionCreators/autocomplete'
+import { updateInputValue } from '../../ActionCreators/autocomplete'
 
 const mixStyles = ()=> (Object.assign(styles(theme), flexStyles(theme)))
 
@@ -24,9 +24,9 @@ function renderInput(inputProps) {
   const { label, classes, ref, ...other } = inputProps;
   return (
         <TextField
-            label={label}
+            label={ label }
             fullWidth
-            inputRef={ref}
+            inputRef={ ref }
             InputProps={{
               ...other,
         }}
@@ -63,7 +63,7 @@ function renderSuggestionsContainer(options) {
 
   return (
     <Paper {...containerProps} square>
-      {children}
+      { children }
     </Paper>
   );
 }
@@ -92,9 +92,8 @@ function getSuggestions(value) {
 }
 
 class IntegrationAutosuggest extends React.Component {
+
   state = {
-    // id: null,
-    // value: '',
     suggestions: []
   };
 
@@ -111,20 +110,24 @@ class IntegrationAutosuggest extends React.Component {
     // });
   };
 
-  handleChange = (event, { newValue }) => {
-    this.setState({
-      value: typeof newValue === 'string' ? newValue : newValue.label,
-      id: typeof newValue === 'string' ? null : newValue.id
-    });
-  };
+  // handleChange = (event, { newValue }) => {
+  //   // selectValue(event, { newValue });
+  //   // this.setState({
+  //   //   value: typeof newValue === 'string' ? newValue : newValue.label,
+  //   //   id: typeof newValue === 'string' ? null : newValue.id
+  //   // });
+  // };
 
   render() {
-    const { classes, inputLabel, autocomplete  } = this.props;
+    const { classes, inputLabel, autocomplete, onChange  } = this.props;
 
     return (
       <div className={ classes.flex }> 
-        <Icon className={ classes.prefixIcon } color="black">directions_car</Icon>
+        <Icon className={ classes.prefixIcon } color="black">
+          directions_car
+        </Icon>
         <Autosuggest
+
           theme={{
             container: classes.container,
             suggestionsContainerOpen: classes.suggestionsContainerOpen,
@@ -132,6 +135,7 @@ class IntegrationAutosuggest extends React.Component {
             suggestion: classes.suggestion,
             input: classes.input
           }}
+
           renderInputComponent={ renderInput }
           suggestions={ this.state.suggestions }
           onSuggestionsFetchRequested={ this.handleSuggestionsFetchRequested }
@@ -139,17 +143,37 @@ class IntegrationAutosuggest extends React.Component {
           renderSuggestionsContainer={ renderSuggestionsContainer }
           getSuggestionValue={ getSuggestionValue }
           renderSuggestion={ renderSuggestion }
+
           inputProps={{
             label: inputLabel,
             classes,
             placeholder: `Search a ${inputLabel.toLowerCase()}`,
             value: autocomplete.value,
-            onChange: this.handleChange,
+            onChange
           }}
+
         />
       </div>
     );
   }
+}
+
+const mapStateToProps = state => ({
+  autocomplete: state.autocomplete
+})
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onChange(event, { newValue }) {
+      dispatch(updateInputValue(event, { newValue }));
+    }
+    // onSuggestionsFetchRequested({ value }) {
+    //   dispatch(loadSuggestions(value));
+    // },
+    // onSuggestionsClearRequested() {
+    //   dispatch(clearSuggestions());
+    // }
+  };
 }
 
 IntegrationAutosuggest.propTypes = {
@@ -158,10 +182,10 @@ IntegrationAutosuggest.propTypes = {
 
 export default compose(
   withStyles(mixStyles, { name: 'autocomplete' }),
-  connect((state, props) => {
-    return {
-        autocomplete: state.autocomplete
-      }
-    }, 
-    { selectValue })
+
+  connect(
+      mapStateToProps,
+      mapDispatchToProps
+  )
+
 )(IntegrationAutosuggest);

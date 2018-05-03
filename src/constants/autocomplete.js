@@ -1,1 +1,1 @@
-export const SELECT_VALUE = "SELECT_VALUE"
+export const UPDATE_INPUT_VALUE = "UPDATE_INPUT_VALUE"
