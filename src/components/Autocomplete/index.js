@@ -93,9 +93,9 @@ function getSuggestions(value) {
 
 class IntegrationAutosuggest extends React.Component {
 
-  state = {
-    suggestions: []
-  };
+  // state = {
+  //   suggestions: []
+  // };
 
   handleSuggestionsFetchRequested = ({ value }) => {
     
@@ -119,7 +119,7 @@ class IntegrationAutosuggest extends React.Component {
   // };
 
   render() {
-    const { classes, inputLabel, autocomplete, onChange  } = this.props;
+    const { classes, inputLabel, value, suggestions, onChange, onSuggestionsFetchRequested  } = this.props;
 
     return (
       <div className={ classes.flex }> 
@@ -137,8 +137,8 @@ class IntegrationAutosuggest extends React.Component {
           }}
 
           renderInputComponent={ renderInput }
-          suggestions={ this.state.suggestions }
-          onSuggestionsFetchRequested={ this.handleSuggestionsFetchRequested }
+          suggestions={ suggestions }
+          onSuggestionsFetchRequested={ onSuggestionsFetchRequested }
           onSuggestionsClearRequested={ this.handleSuggestionsClearRequested }
           renderSuggestionsContainer={ renderSuggestionsContainer }
           getSuggestionValue={ getSuggestionValue }
@@ -148,7 +148,7 @@ class IntegrationAutosuggest extends React.Component {
             label: inputLabel,
             classes,
             placeholder: `Search a ${inputLabel.toLowerCase()}`,
-            value: autocomplete.value,
+            value,
             onChange
           }}
 
@@ -158,15 +158,24 @@ class IntegrationAutosuggest extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  autocomplete: state.autocomplete
-})
+function mapStateToProps(state) {
+  const { value, suggestions }=state.autocomplete;
+  return {
+    value,
+    suggestions
+  };
+};
 
 function mapDispatchToProps(dispatch) {
   return {
     onChange(event, { newValue }) {
       dispatch(updateInputValue(event, { newValue }));
+    },
+
+    onSuggestionsFetchRequested( {value} ) {
+      dispatch(getSuggestions(value));
     }
+
     // onSuggestionsFetchRequested({ value }) {
     //   dispatch(loadSuggestions(value));
     // },
