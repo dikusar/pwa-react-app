@@ -16,7 +16,7 @@ import styles from './styleOptions'
 import flexStyles from '../../styles/flexStyles'
 import suggestions from './suggestions'
 import theme from '../../App.theme'
-import { updateInputValue } from '../../ActionCreators/autocomplete'
+import { updateInputValue, getSuggestions } from '../../ActionCreators/autocomplete'
 
 const mixStyles = ()=> (Object.assign(styles(theme), flexStyles(theme)))
 
@@ -72,24 +72,7 @@ function getSuggestionValue(suggestion) {
   return suggestion;
 }
 
-function getSuggestions(value) {
-  const inputValue = value.trim().toLowerCase();
-  const inputLength = inputValue.length;
-  let count = 0;
 
-  return inputLength === 0
-    ? []
-    : suggestions.filter(suggestion => {
-        const keep =
-          count < 5 && suggestion.label.toLowerCase().slice(0, inputLength) === inputValue;
-
-        if (keep) {
-          count += 1;
-        }
-
-        return keep;
-      });
-}
 
 class IntegrationAutosuggest extends React.Component {
 
@@ -109,14 +92,6 @@ class IntegrationAutosuggest extends React.Component {
     //   suggestions: [],
     // });
   };
-
-  // handleChange = (event, { newValue }) => {
-  //   // selectValue(event, { newValue });
-  //   // this.setState({
-  //   //   value: typeof newValue === 'string' ? newValue : newValue.label,
-  //   //   id: typeof newValue === 'string' ? null : newValue.id
-  //   // });
-  // };
 
   render() {
     const { classes, inputLabel, value, suggestions, onChange, onSuggestionsFetchRequested  } = this.props;
@@ -176,12 +151,11 @@ function mapDispatchToProps(dispatch) {
       dispatch(getSuggestions(value));
     }
 
-    // onSuggestionsFetchRequested({ value }) {
-    //   dispatch(loadSuggestions(value));
-    // },
+
     // onSuggestionsClearRequested() {
     //   dispatch(clearSuggestions());
     // }
+
   };
 }
 
