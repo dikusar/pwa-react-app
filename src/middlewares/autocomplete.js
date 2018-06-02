@@ -54,8 +54,7 @@ export default store => next => action => {
                  });
         break;
 
-        default:
-            return next(action);
+        
 
     }
 }
