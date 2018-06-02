@@ -14,9 +14,9 @@ import { MenuItem, withStyles, Icon, TextField, createMuiTheme } from 'material-
 
 import styles from './styleOptions'
 import flexStyles from '../../styles/flexStyles'
-import suggestions from './suggestions'
+// import suggestions from './suggestions'
 import theme from '../../App.theme'
-import { updateInputValue, getSuggestions } from '../../ActionCreators/autocomplete'
+import { updateInputValue, getSuggestions, clearSuggestions } from '../../ActionCreators/autocomplete'
 
 const mixStyles = ()=> (Object.assign(styles(theme), flexStyles(theme)))
 
@@ -73,28 +73,14 @@ function getSuggestionValue(suggestion) {
 }
 
 
-
 class IntegrationAutosuggest extends React.Component {
 
   // state = {
   //   suggestions: []
   // };
 
-  handleSuggestionsFetchRequested = ({ value }) => {
-    
-    // this.setState({
-    //   suggestions: getSuggestions(value),
-    // });
-  };
-
-  handleSuggestionsClearRequested = () => {
-    // this.setState({
-    //   suggestions: [],
-    // });
-  };
-
   render() {
-    const { classes, inputLabel, value, suggestions, onChange, onSuggestionsFetchRequested  } = this.props;
+    const { classes, inputLabel, value, suggestions, onChange, onSuggestionsFetchRequested, onSuggestionsClearRequested  } = this.props;
 
     return (
       <div className={ classes.flex }> 
@@ -114,7 +100,7 @@ class IntegrationAutosuggest extends React.Component {
           renderInputComponent={ renderInput }
           suggestions={ suggestions }
           onSuggestionsFetchRequested={ onSuggestionsFetchRequested }
-          onSuggestionsClearRequested={ this.handleSuggestionsClearRequested }
+          onSuggestionsClearRequested={ onSuggestionsClearRequested }
           renderSuggestionsContainer={ renderSuggestionsContainer }
           getSuggestionValue={ getSuggestionValue }
           renderSuggestion={ renderSuggestion }
@@ -147,14 +133,13 @@ function mapDispatchToProps(dispatch) {
       dispatch(updateInputValue(event, { newValue }));
     },
 
-    onSuggestionsFetchRequested( {value} ) {
-      dispatch(getSuggestions(value));
+    onSuggestionsFetchRequested({ value, reason }) {
+      dispatch(getSuggestions({ value, reason }));
+    },
+
+    onSuggestionsClearRequested() {
+      dispatch(clearSuggestions());
     }
-
-
-    // onSuggestionsClearRequested() {
-    //   dispatch(clearSuggestions());
-    // }
 
   };
 }

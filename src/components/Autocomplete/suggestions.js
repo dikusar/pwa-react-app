@@ -13,5 +13,5 @@ const suggestions = [
 	}
 ];
 
-export default suggestions
+export default suggestions;
 

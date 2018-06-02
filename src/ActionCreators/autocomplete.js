@@ -1,4 +1,15 @@
-import { UPDATE_INPUT_VALUE, MAYBE_LOAD_SUGGESTIONS } from '../constants/autocomplete'
+import { UPDATE_INPUT_VALUE, MAYBE_LOAD_SUGGESTIONS, CLEAR_SUGGESTIONS } from '../constants/autocomplete'
+
+function maybeLoadSuggestions({ value, reason }) {
+	return {
+	    type: MAYBE_LOAD_SUGGESTIONS,
+	    payload: {
+	    	value,
+	    	reason
+	    }
+  };
+}
+
 
 export function updateInputValue(event, { newValue }) {
    return {
@@ -9,37 +20,16 @@ export function updateInputValue(event, { newValue }) {
     }
 }
 
-function maybeLoadSuggestions(value) {
-  return {
-    type: MAYBE_LOAD_SUGGESTIONS,
-    payload: {
-    	value	
-    }
-  };
-}
-
-export function getSuggestions(value) {
-  // const inputValue = value.trim().toLowerCase();
-  // const inputLength = inputValue.length;
-  // let count = 0;
-
-  // return inputLength === 0
-  //   ? []
-  //   : suggestions.filter(suggestion => {
-  //       const keep =
-  //         count < 5 && suggestion.label.toLowerCase().slice(0, inputLength) === inputValue;
-
-  //       if (keep) {
-  //         count += 1;
-  //       }
-
-  //       return keep;
-  //     });
+export function getSuggestions({ value, reason }) {
 	return dispatch => {
-	    // dispatch(loadSuggestionsBegin());
-
-	    dispatch(maybeLoadSuggestions(value));
+	    dispatch(maybeLoadSuggestions({ value, reason }));
 	}
     
+}
+
+export function clearSuggestions() {
+	return {
+		type: CLEAR_SUGGESTIONS
+	}
 }
 
