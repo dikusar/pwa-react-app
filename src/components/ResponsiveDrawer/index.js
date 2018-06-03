@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux';
+import compose from 'recompose/compose';
 
 import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
@@ -96,9 +98,22 @@ class ResponsiveDrawer extends React.Component {
 	}
 }
 
+function mapStateToProps(state) {
+	const { id:vehicleId }=state.autocomplete;
+	return {
+		vehicleId
+	};
+}
+
 ResponsiveDrawer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);
+export default compose(
+	withStyles(styles, { withTheme: true }),
+
+	connect(mapStateToProps)
+)(ResponsiveDrawer)
+
+// export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);
