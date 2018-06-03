@@ -11,15 +11,18 @@ function getMatchingValues(value) {
   return inputLength === 0
     ? []
     : suggestions.filter(suggestion => {
-        const keep =
-          count < 5 && suggestion.label.toLowerCase().slice(0, inputLength) === inputValue;
+        // const keep =
+        //   count < 5 && suggestion.label.toLowerCase().slice(0, inputLength) === inputValue;
 
-        if (keep) {
-          count += 1;
-        }
+        // if (keep) {
+        //   count += 1;
+        // }
 
+        // return keep;
+        const keep = suggestion.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1;
         return keep;
       });
+    
 }
 
 export default store => next => action => {
