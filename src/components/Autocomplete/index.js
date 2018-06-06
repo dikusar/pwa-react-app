@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 import Autosuggest from 'react-autosuggest';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
 import compose from 'recompose/compose';
+
 
 // import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
@@ -12,13 +14,14 @@ import { MenuItem, withStyles, Icon, TextField, createMuiTheme } from 'material-
 // import { withStyles } from 'material-ui/styles';
 // import Icon from 'material-ui/Icon';
 
-import styles from './styleOptions'
-import flexStyles from '../../styles/flexStyles'
+import styles from './styleOptions';
+import flexStyles from '../../styles/flexStyles';
 // import suggestions from './suggestions'
-import theme from '../../App.theme'
-import { updateInputValue, getSuggestions, clearSuggestions } from '../../ActionCreators/autocomplete'
+import theme from '../../App.theme';
+import { updateInputValue, getSuggestions, clearSuggestions } from '../../ActionCreators/autocomplete';
 
-const mixStyles = ()=> (Object.assign(styles(theme), flexStyles(theme)))
+const mixStyles = ()=> (Object.assign(styles(theme), flexStyles(theme)));
+
 
 function renderInput(inputProps) {
   const { label, classes, ref, ...other } = inputProps;
@@ -83,7 +86,7 @@ class IntegrationAutosuggest extends React.Component {
     const { classes, inputLabel, value, suggestions, onChange, onSuggestionsFetchRequested, onSuggestionsClearRequested  } = this.props;
 
     return (
-      <div className={ classes.flex }> 
+      <div className={ classes.flex } style={{marginBottom:20}}> 
         <Icon className={ classes.prefixIcon } color="black">
           directions_car
         </Icon>
@@ -151,9 +154,9 @@ IntegrationAutosuggest.propTypes = {
 export default compose(
   withStyles(mixStyles, { name: 'autocomplete' }),
 
-  connect(
+  
+    connect(
       mapStateToProps,
       mapDispatchToProps
-  )
-
+    )
 )(IntegrationAutosuggest);

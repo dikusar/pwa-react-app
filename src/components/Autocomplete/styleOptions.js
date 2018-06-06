@@ -1,4 +1,7 @@
 const styles = theme => ({
+  root: {
+    marginBottom: 20
+  },
   container: {
     position: 'relative',
     height: '3rem',
