@@ -18,7 +18,9 @@ const data = [
 ];
 
 const styles = theme => ({
-	
+	root: {
+		width: 100 + '%',
+	},
 	paddingDefault: {
 		padding: '4px 2rem 4px 1rem'
 	}
@@ -28,7 +30,7 @@ const styles = theme => ({
 function VehicleMetrics(props) {
 	const { classes }=props;
 	return(
-		<Paper>
+		<Paper className={ classes.root }>
 			<Toolbar>
 				<Typography type="title">Vehicle</Typography>
 			</Toolbar>
